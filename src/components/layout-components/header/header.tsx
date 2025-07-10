@@ -13,7 +13,7 @@ export default function Header() {
       <MobileContext.Provider
         value={{ openMobileMenu: open, setOpenMobileMenu: setOpen }}
       >
-        <div className="sticky-top border-b p-6 grid grid-cols-2 md:grid-cols-3 shadow-md">
+        <div className="fixed top-0 left-0 w-full z-50 border-b p-6 grid grid-cols-2 md:grid-cols-3 shadow-md bg-white dark:bg-background">
           <Navbar />
           <Logo />
           <Acciones />

@@ -5,6 +5,7 @@ import { useContext, useRef, useEffect } from "react";
 import { MobileContext } from "@/contexts/header/mobile-context";
 import { FiX } from "react-icons/fi";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function MobileMenu() {
   const { openMobileMenu, setOpenMobileMenu } = useContext(MobileContext);
@@ -27,6 +28,8 @@ export default function MobileMenu() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [openMobileMenu, setOpenMobileMenu]);
+
+  const pathname = usePathname();
 
   return (
     <AnimatePresence>
@@ -62,9 +65,13 @@ export default function MobileMenu() {
                 <li key={navbarLink.id}>
                   <Link
                     href={navbarLink.link}
-                    className="block text-lg font-semibold hover:text-rose-600 transition duration-300"
+                    className={`block text-lg font-semibold hover:text-rose-600 transition duration-300 ${
+                      pathname === navbarLink.link
+                        ? "text-rose-600 scale-105 underline"
+                        : ""
+                    }`}
                   >
-                    {navbarLink.title}
+                    {navbarLink.title.toLocaleUpperCase()}
                   </Link>
                 </li>
               ))}
